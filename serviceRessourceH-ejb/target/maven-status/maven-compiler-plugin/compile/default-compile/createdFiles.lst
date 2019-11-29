@@ -1,0 +1,6 @@
+metier\gestionRH.class
+entite\planning.class
+entite\formateur.class
+metier\gestionRHLocal.class
+services\ServiceRHLocal.class
+services\ServiceRH.class
