@@ -9,7 +9,7 @@ package entite;
  *
  * @author alban
  */
-public class formateur {
+public class Formateur {
     
     private static int count = 0; 
     private int id;
@@ -18,7 +18,7 @@ public class formateur {
     private String enseignement;
     private String DateN;
 
-    public formateur(String nomForm, String prenomForm, String enseignement, String DateN) {
+    public Formateur(String nomForm, String prenomForm, String enseignement, String DateN) {
         this.id = ++count;
         this.nomForm = nomForm;
         this.prenomForm = prenomForm;
@@ -26,7 +26,7 @@ public class formateur {
         this.DateN = DateN;
     }
     
-     public formateur(int id,String nomForm, String prenomForm, String enseignement, String DateN) {
+     public Formateur(int id,String nomForm, String prenomForm, String enseignement, String DateN) {
         this.id = id;
         this.nomForm = nomForm;
         this.prenomForm = prenomForm;

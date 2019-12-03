@@ -5,6 +5,7 @@
  */
 package serviceRessourceH;
 
+import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
@@ -34,11 +35,13 @@ public class RHResource {
 
     @Context
     private UriInfo context;
+    private Gson gson;
 
     /**
      * Creates a new instance of RHResource
      */
     public RHResource() {
+        this.gson = new Gson();
     }
 
     /**
@@ -49,8 +52,7 @@ public class RHResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String afficherPlan() {
-        //TODO return proper representation object
-        return serviceRH.RenvoisPlan();
+        return this.gson.toJson(serviceRH.renvoiPlan());
     }
     
     @Path("afficherForm")
@@ -58,7 +60,14 @@ public class RHResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String afficherForma() {
         //TODO return proper representation object
-        return serviceRH.RenvoisForma();
+        return this.gson.toJson(serviceRH.renvoiForma());
+    }
+    
+    @Path("afficherFormateurs")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public String afficherFormateurs() {
+        return this.gson.toJson(serviceRH.renvoiFormateurs());
     }
 
     /**
@@ -73,42 +82,36 @@ public class RHResource {
     @Path("SupprimerForma")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String SupprimerForma(@QueryParam("idFrom") int id) {
-        
-        return serviceRH.SupprimerForma(id);        
+    public String supprimerForma(@QueryParam("idForm") int id) {
+        return serviceRH.supprimerForma(id);        
     }
     
     @Path("SupprimerFormaPlan")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String SupprimerFormaPlan(@QueryParam("idPlan") int id) {
-       
-        return serviceRH.SupprimerFormaPlan(id);        
+    public String supprimerFormaPlan(@QueryParam("idPlan") int id) {
+        return serviceRH.supprimerFormaPlan(id);        
     }
     
     @Path("AjoutFormaPlan")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public String AjoutFormaPlan(String content) {
-        //return Response.ok(gson.toJson(patri.ajouterSalle(id))).build();
-        //System.out.print(id);
-        return serviceRH.ajouterFormaPlan(content);        
+    public String ajoutFormaPlan(String content) {
+        return this.gson.toJson(serviceRH.ajouterFormaPlan(content));        
     }
     
     @Path("AjoutForma")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public String AjoutForma(String content) {
-       
-        return serviceRH.ajouterForma(content);        
+    public String ajoutForma(String content) {     
+        return this.gson.toJson(serviceRH.ajouterForma(content));        
     }
     
     @Path("changerDate")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public String changerDate(String content) {
-    
-        return serviceRH.changerDate(content);        
+        return this.gson.toJson(serviceRH.changerDate(content));        
     }
 
     private services.ServiceRHLocal lookupServiceRHLocal() {

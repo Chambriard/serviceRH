@@ -69,18 +69,15 @@ public class ModifSuprResource {
     @Path("Suppr")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String SupprimerForma(@QueryParam("idFrom") int id) {
-        System.out.print("////////////////" + id + "///////////////");
-        return this.gson.toJson(this.serviceRH.SupprimerForma(id));
-        //return serviceRH.SupprimerForma(id);        
+    public String supprimerForma(@QueryParam("idFrom") int id) {
+        return this.gson.toJson(this.serviceRH.supprimerForma(id));      
     }
     
     @Path("modif")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public String ModifierForma(String content) {
-    
-        return serviceRH.changerDate(content);        
+    public String modifierForma(String content) {
+        return this.gson.toJson(serviceRH.changerDate(content));        
     }
 
     private ServiceRHLocal lookupServiceRHLocal() {

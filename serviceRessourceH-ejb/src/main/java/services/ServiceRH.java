@@ -6,9 +6,13 @@
 package services;
 
 import com.google.gson.Gson;
+import entite.Formateur;
+import entite.Planning;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import metier.gestionRHLocal;
+import metier.GestionRHLocal;
 
 /**
  *
@@ -17,12 +21,8 @@ import metier.gestionRHLocal;
 @Stateless
 public class ServiceRH implements ServiceRHLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
-    
     @EJB
-    private gestionRHLocal gestionRH;
+    private GestionRHLocal gestionRH;
     /**
      * Convertisseur Objet JSON et inversement)
      */
@@ -35,56 +35,48 @@ public class ServiceRH implements ServiceRHLocal {
     
     
     @Override
-    public String ajouterForma(String content){
-        
-        
+    public Formateur ajouterForma(String content){
         return this.gestionRH.ajouterForma(content);
-   
     }
     
     @Override
-    public String ajouterFormaPlan(String content){
+    public Planning ajouterFormaPlan(String content){
         return this.gestionRH.ajouterFormaPlan(content);
     }
     
     
     @Override
-    public String changerDate(String content){
-      
-      
+    public Planning changerDate(String content){
         return this.gestionRH.changerDate(content);
-        
+    }
+    
+    @Override
+    public String supprimerForma(int id) {
+        return this.gestionRH.supprimerForma(id);
+    }
+    
+    @Override
+    public String supprimerFormaPlan(int id){
+        return this.gestionRH.supprimerFormaPlan(id);
+    }
+    
+    
+    @Override
+    public ArrayList<Planning> renvoiPlan() {
+        return this.gestionRH.renvoiPlan();
+    }
+    
+    @Override
+    public HashMap<Integer, Formateur> renvoiForma(){
+         return this.gestionRH.renvoiForma();
+    }
 
-
-    }
-    
     @Override
-    public String SupprimerForma(int id) {
-       
-        return this.gestionRH.SupprimerForma(id);
-        
-    
-    }
-    
-    @Override
-    public String SupprimerFormaPlan(int id){
-        return this.gestionRH.SupprimerFormaPlan(id);
+    public ArrayList<Planning> renvoiFormateurs() {
+        return this.gestionRH.renvoiFormateurs();
     }
     
     
-     @Override
-    public String RenvoisPlan() {
-       
-        //System.out.print("coucou 2" + id_Sal);
-        return this.gestionRH.RenvoisPlan();
-        
-    
-    }
-    
-    @Override
-    public String RenvoisForma(){
-         return this.gestionRH.RenvoisForma();
-    }
     
     
 }

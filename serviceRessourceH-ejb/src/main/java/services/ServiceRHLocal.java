@@ -5,6 +5,10 @@
  */
 package services;
 
+import entite.Formateur;
+import entite.Planning;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.ejb.Local;
 
 /**
@@ -15,19 +19,21 @@ import javax.ejb.Local;
 public interface ServiceRHLocal {
     
     
-    public String ajouterForma(String content);
+    public Formateur ajouterForma(String content);
     
-    public String changerDate(String content);
+    public Planning changerDate(String content);
     
-    public String SupprimerForma(int id);
+    public String supprimerForma(int id);
     
-    public String RenvoisPlan();
+    public ArrayList<Planning> renvoiPlan();
      
-    public String ajouterFormaPlan(String content);
+    public Planning ajouterFormaPlan(String content);
     
-    public String SupprimerFormaPlan(int id);
+    public String supprimerFormaPlan(int id);
     
-    public String RenvoisForma();
+    public HashMap<Integer, Formateur> renvoiForma();
+
+    public ArrayList<Planning> renvoiFormateurs();
     
     
      
