@@ -46,8 +46,8 @@ public class ServiceRH implements ServiceRHLocal {
     
     
     @Override
-    public Planning changerDate(String content){
-        return this.gestionRH.changerDate(content);
+    public String changerStatut(String content){
+        return this.gestionRH.changerStatut(content);
     }
     
     @Override
@@ -72,8 +72,8 @@ public class ServiceRH implements ServiceRHLocal {
     }
 
     @Override
-    public ArrayList<Planning> renvoiFormateurs() {
-        return this.gestionRH.renvoiFormateurs();
+    public ArrayList<Planning> renvoiPlannningFormateurs() {
+        return this.gestionRH.renvoiPlannningFormateurs();
     }
     
     

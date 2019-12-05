@@ -21,7 +21,7 @@ public interface GestionRHLocal {
     
     public Formateur ajouterForma(String content);
     
-    public Planning changerDate(String content);
+    public String changerStatut(String content);
     
     public String supprimerFormaPlan(int id);
     
@@ -33,5 +33,5 @@ public interface GestionRHLocal {
     
     public HashMap<Integer, Formateur> renvoiForma();
 
-    public ArrayList<Planning> renvoiFormateurs();
+    public ArrayList<Planning> renvoiPlannningFormateurs();
 }

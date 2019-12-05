@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package serviceRessourceH;
 
 import com.google.gson.Gson;
@@ -63,11 +58,11 @@ public class RHResource {
         return this.gson.toJson(serviceRH.renvoiForma());
     }
     
-    @Path("afficherFormateurs")
+    @Path("afficherPlanFormateurs")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String afficherFormateurs() {
-        return this.gson.toJson(serviceRH.renvoiFormateurs());
+    public String afficherPlanFormateurs() {
+        return this.gson.toJson(serviceRH.renvoiPlannningFormateurs());
     }
 
     /**
@@ -96,6 +91,7 @@ public class RHResource {
     @Path("AjoutFormaPlan")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public String ajoutFormaPlan(String content) {
         return this.gson.toJson(serviceRH.ajouterFormaPlan(content));        
     }
@@ -103,15 +99,17 @@ public class RHResource {
     @Path("AjoutForma")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public String ajoutForma(String content) {     
         return this.gson.toJson(serviceRH.ajouterForma(content));        
     }
     
-    @Path("changerDate")
+    @Path("changerStatut")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public String changerDate(String content) {
-        return this.gson.toJson(serviceRH.changerDate(content));        
+    @Produces(MediaType.APPLICATION_JSON)
+    public String changerStatut(String content) {
+        return this.gson.toJson(serviceRH.changerStatut(content));        
     }
 
     private services.ServiceRHLocal lookupServiceRHLocal() {

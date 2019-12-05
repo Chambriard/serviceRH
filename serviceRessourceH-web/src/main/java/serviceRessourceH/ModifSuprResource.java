@@ -77,7 +77,7 @@ public class ModifSuprResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public String modifierForma(String content) {
-        return this.gson.toJson(serviceRH.changerDate(content));        
+        return this.gson.toJson(serviceRH.changerStatut(content));        
     }
 
     private ServiceRHLocal lookupServiceRHLocal() {

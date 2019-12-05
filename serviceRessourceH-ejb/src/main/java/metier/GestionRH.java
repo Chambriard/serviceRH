@@ -54,7 +54,7 @@ public class GestionRH implements GestionRHLocal {
          return monPlanning;
     }
     
-    private HashMap<Integer, Formateur>  initForma(){
+    private HashMap<Integer, Formateur> initForma(){
         HashMap<Integer, Formateur>  mesForma = new HashMap<> ();
         Formateur forma1 = new Formateur("Dupont","Charle","audit","25/08/1989");
         Formateur forma2 = new Formateur("Occupé","Bonpart","EAI","23/09/1991");
@@ -89,27 +89,32 @@ public class GestionRH implements GestionRHLocal {
     }
     
     @Override
-    public Planning changerDate(String content) {
-        System.out.println("changer statut" + content);
-        Planning pla = this.gson.fromJson(content, Planning.class);
+    public String changerStatut(String content) {        
+        Planning pla = this.gson.fromJson(content, Planning.class);       
+        String res = null;
+        Integer formateur = null;
         
-        System.out.println(pla.toString());
-        Planning res = null;
         for(int i = 0; i<monPlanning.size();i++){
-            if(monPlanning.get(i).getIdForm() == pla.getIdForm() && monPlanning.get(i).getIdFormation() == pla.getIdFormation()){
-                monPlanning.get(i).setStatut(pla.getStatut());
-                monPlanning.get(i).setDateDeb(pla.getDateDeb());
-                monPlanning.get(i).setDateFin(pla.getDateFin());
-                res = monPlanning.get(i);
-            }
-            if(monPlanning.get(i).getIdForm() == pla.getIdForm() && monPlanning.get(i).getIdFormation() == pla.getIdFormation() && pla.getStatut().equals("indisponible") ){
-                monPlanning.get(i).setStatut(pla.getStatut());
-                monPlanning.get(i).setDateDeb(pla.getDateDeb());
-                monPlanning.get(i).setDateFin(pla.getDateFin());
-                monPlanning.get(i).setIdFormation(0);
-                res = monPlanning.get(i);
-            }
+            if(monPlanning.get(i).getIdForm()== pla.getIdForm()) {
+                formateur = pla.getIdForm();
+                if(monPlanning.get(i).getDateDeb().equals(pla.getDateDeb())){
+                   monPlanning.get(i).setStatut(pla.getStatut());
+                   monPlanning.get(i).setIdFormation(pla.getIdFormation());
+                   monPlanning.get(i).setDateFin(pla.getDateFin());
+
+                   if(pla.getStatut().equals("indisponible"))
+                       monPlanning.get(i).setIdFormation(null);
+
+                   res = "Mise a jour du formateur reussi.";
+               }
+            }     
         }
+        
+        if(formateur == null)
+            res = "Formateur non existant dans le planning";
+        else if(formateur != null && res == null)
+            res = "Reservation non existante dans le planning";
+        
         return res;
     }
     
@@ -166,20 +171,19 @@ public class GestionRH implements GestionRHLocal {
     
 
     @Override
-    public ArrayList<Planning> renvoiFormateurs() {
+    public ArrayList<Planning> renvoiPlannningFormateurs() {
         ArrayList<Planning> planning = new ArrayList<>();
         Planning plan = null;
         for(Formateur f : this.mesForms.values()) {
             for(Planning p : this.monPlanning) {
-                if(p.getIdForm() == f.getId())
+                if(p.getIdForm()== f.getId()) {
                     plan = p;
+                    planning.add(plan);
+                }
             }
             if(plan == null) {
                 Planning p = new Planning(f.getId(), "disponible", null, null);
                 planning.add(p);
-            }
-            else {
-                planning.add(plan);
             }
             plan = null;
         }

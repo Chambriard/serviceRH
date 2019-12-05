@@ -5,25 +5,19 @@
  */
 package entite;
 
-import javax.persistence.Column;
-
 /**
  *
  * @author alban
  */
 public class Planning {
 
-    
-
-   
-        
-    private int idForm;
-    private int idFormation;
+    private Integer idForm;
+    private Integer idFormation;
     private String statut;
     private String dateDeb;
     private String dateFin;
 
-    public Planning(int idForm, int idFormation, String statut, String dateDeb, String dateFin) {
+    public Planning(Integer idForm, Integer idFormation, String statut, String dateDeb, String dateFin) {
         this.idForm = idForm;
         this.idFormation = idFormation;
         this.statut = statut;
@@ -31,7 +25,7 @@ public class Planning {
         this.dateFin = dateFin;
     }
 
-    public Planning(int idForm, String statut, String dateDeb, String dateFin) {
+    public Planning(Integer idForm, String statut, String dateDeb, String dateFin) {
         this.idForm = idForm;
         this.statut = statut;
         this.dateDeb = dateDeb;
@@ -39,17 +33,17 @@ public class Planning {
     }
 
     
-    public int getIdFormation() {
+    public Integer getIdFormation() {
         return idFormation;
     }
 
-    public void setIdFormation(int idFormation) {
+    public void setIdFormation(Integer idFormation) {
         this.idFormation = idFormation;
     }
 
     
 
-    public int getIdForm() {
+    public Integer getIdForm() {
         return idForm;
     }
 
@@ -65,7 +59,7 @@ public class Planning {
         return dateFin;
     }
 
-    public void setIdForm(int idForm) {
+    public void setIdForm(Integer idForm) {
         this.idForm = idForm;
     }
 
