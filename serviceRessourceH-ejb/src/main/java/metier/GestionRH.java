@@ -67,7 +67,6 @@ public class GestionRH implements GestionRHLocal {
     public Formateur ajouterForma(String content)  {
         Formateur forma = this.gson.fromJson(content, Formateur.class);
         Formateur forma2 = new Formateur(mesForms.size()+1, forma.getNomForm(),forma.getPrenomForm(),forma.getEnseignement(),forma.getDateN());
-        System.out.println(forma.toString());
         mesForms.put(forma2.getId(), forma2);
         return forma2;
     }
@@ -75,7 +74,6 @@ public class GestionRH implements GestionRHLocal {
     @Override
     public Planning ajouterFormaPlan(String content)  {
         Planning pla = this.gson.fromJson(content, Planning.class);
-        System.out.println(pla.toString());
         monPlanning.add(pla);
         return pla;
     }
@@ -85,10 +83,8 @@ public class GestionRH implements GestionRHLocal {
         Planning pla = this.gson.fromJson(content, Planning.class);  
         String res = null;
         Integer formateur = null;
-        System.out.println("formateur :" + pla.getIdForm());
+        
         for(int i = 0; i<monPlanning.size();i++){
-            
-                System.out.println("ID :" + monPlanning.get(i).getIdForm());
             if(monPlanning.get(i).getIdForm()== pla.getIdForm()) {
                 formateur = pla.getIdForm();
                 if(monPlanning.get(i).getDateDeb().equals(pla.getDateDeb())){
