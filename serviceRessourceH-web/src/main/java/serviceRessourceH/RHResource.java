@@ -84,8 +84,8 @@ public class RHResource {
     @Path("SupprimerFormaPlan")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String supprimerFormaPlan(@QueryParam("idPlan") int id) {
-        return serviceRH.supprimerFormaPlan(id);        
+    public String supprimerFormaPlan(@QueryParam("idFormateur") int idFormateur, @QueryParam("dateDeb") String dateDeb) {
+        return serviceRH.supprimerFormaPlan(idFormateur, dateDeb);        
     }
     
     @Path("AjoutFormaPlan")

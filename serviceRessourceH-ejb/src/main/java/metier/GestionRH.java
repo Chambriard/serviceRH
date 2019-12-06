@@ -32,24 +32,27 @@ public class GestionRH implements GestionRHLocal {
     
     private ArrayList<Planning> initPlan(){
         ArrayList<Planning> monPlanning = new ArrayList<Planning>();
-        Planning pla1 = new Planning(1,1,"affecté","01/01/2019","07/01/2020");
+        /*Planning pla1 = new Planning(1,1,"affecté","01/01/2019","07/01/2020");
         Planning pla2 = new Planning(2,2,"affecté","01/01/2019","03/01/2020");
         Planning pla3 = new Planning(3,3,"affecté","01/01/2019","12/01/2020");
         Planning pla4 = new Planning(4,4,"affecté","01/01/2019","10/01/2020");
-        
         Planning pla5 = new Planning(1,"indisponible","08/01/2020","26/02/2020");
         Planning pla6 = new Planning(2,"indisponible","04/01/2020","27/02/2020");
         Planning pla7 = new Planning(3,"indisponible","13/01/2020","12/02/2020");
-        Planning pla8 = new Planning(4,"indisponible","11/01/2020","17/04/2020");
+        Planning pla8 = new Planning(4,"indisponible","11/01/2020","17/04/2020");*/
+        Planning pla1 = new Planning(1,1,"affecte","01/01/2020","04/01/2020");
+        Planning pla2 = new Planning(2,2,"pressenti","11/02/2020","16/02/2020");
+        Planning pla3 = new Planning(3,3,"affecte","01/01/2020","12/01/2020");
+        Planning pla4 = new Planning(4,4,"affecte","25/10/2020","30/10/2020");
+        Planning pla5 = new Planning(4,"indisponible","11/01/2020","17/04/2020");
         monPlanning.add(pla1);
         monPlanning.add(pla2);
         monPlanning.add(pla3);
         monPlanning.add(pla4);
-        
         monPlanning.add(pla5);
-        monPlanning.add(pla6);
+        /*monPlanning.add(pla6);
         monPlanning.add(pla7);
-        monPlanning.add(pla8);
+        monPlanning.add(pla8);*/
          
          return monPlanning;
     }
@@ -90,11 +93,13 @@ public class GestionRH implements GestionRHLocal {
     
     @Override
     public String changerStatut(String content) {        
-        Planning pla = this.gson.fromJson(content, Planning.class);       
+        Planning pla = this.gson.fromJson(content, Planning.class);  
         String res = null;
         Integer formateur = null;
-        
+        System.out.println("formateur :" + pla.getIdForm());
         for(int i = 0; i<monPlanning.size();i++){
+            
+                System.out.println("ID :" + monPlanning.get(i).getIdForm());
             if(monPlanning.get(i).getIdForm()== pla.getIdForm()) {
                 formateur = pla.getIdForm();
                 if(monPlanning.get(i).getDateDeb().equals(pla.getDateDeb())){
@@ -119,13 +124,15 @@ public class GestionRH implements GestionRHLocal {
     }
     
     @Override
-    public String supprimerFormaPlan(int id){
+    public String supprimerFormaPlan(int idFormateur, String dateDeb){
+        String res = "Formateur non existant dans le planning";
         for(int i = 0; i<monPlanning.size();i++){
-            if (monPlanning.get(i).getIdForm() == id){
+            if (monPlanning.get(i).getIdForm()== idFormateur && monPlanning.get(i).getDateDeb().equals(dateDeb)){
                 monPlanning.remove(i);
+                res = "Formateur bien enleve du planning";
             }
         }
-        return "Formateur enlevé du planning";
+        return res;
     }
     
     @Override

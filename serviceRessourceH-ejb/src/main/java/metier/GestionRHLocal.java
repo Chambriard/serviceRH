@@ -23,7 +23,7 @@ public interface GestionRHLocal {
     
     public String changerStatut(String content);
     
-    public String supprimerFormaPlan(int id);
+    public String supprimerFormaPlan(int idFormateur, String dateDeb);
     
     public String supprimerForma(int id);
     

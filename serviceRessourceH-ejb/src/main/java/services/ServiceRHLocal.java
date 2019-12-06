@@ -29,7 +29,7 @@ public interface ServiceRHLocal {
      
     public Planning ajouterFormaPlan(String content);
     
-    public String supprimerFormaPlan(int id);
+    public String supprimerFormaPlan(int idSalle, String dateDeb);
     
     public HashMap<Integer, Formateur> renvoiForma();
 

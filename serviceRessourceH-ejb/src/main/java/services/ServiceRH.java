@@ -56,8 +56,8 @@ public class ServiceRH implements ServiceRHLocal {
     }
     
     @Override
-    public String supprimerFormaPlan(int id){
-        return this.gestionRH.supprimerFormaPlan(id);
+    public String supprimerFormaPlan(int idFormateur, String dateDeb){
+        return this.gestionRH.supprimerFormaPlan(idFormateur, dateDeb);
     }
     
     
